@@ -1,0 +1,47 @@
+<UserControl x:Class="TestKnowledgeApp.Views.LoginView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:TestKnowledgeApp.ViewModels"
+             x:CompileBindings="True"
+             x:DataType="vm:LoginViewModel"
+             mc:Ignorable="d">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:LoginViewModel/>
+    </Design.DataContext>
+    
+    <StackPanel Margin="20">
+        <TextBlock Text="Login" FontSize="24" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+        <TextBlock Text="Username:"/>
+        <TextBox Width="300" 
+                 Text="{Binding LoginModel.Login, Mode=TwoWay}" 
+                 Margin="0,0,0,10"/>
+
+        <TextBlock Text="Password:"/>
+        <TextBox Width="300"
+                 PasswordChar="*"
+                 Text="{Binding LoginModel.Password, Mode=TwoWay}" 
+                 Margin="0,0,0,20"/>
+
+        <Button Content="Login" 
+                Command="{Binding OnLoginAsync}" 
+                Width="300" 
+                HorizontalAlignment="Center"/>
+        
+        <TextBlock Text="{Binding LoginMessage}" 
+                   Foreground="Red" 
+                   HorizontalAlignment="Center"/>
+        
+        <Button Content="Sign Up" 
+                Command="{Binding NavigateToRegisterPage}" 
+                Width="300" 
+                HorizontalAlignment="Center"/>
+        
+    </StackPanel>
+
+</UserControl>
